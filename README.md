@@ -1,255 +1,323 @@
-DefinitelyTyped [![Build Status](https://travis-ci.org/borisyankov/DefinitelyTyped.png?branch=master)](https://travis-ci.org/borisyankov/DefinitelyTyped)
-===============
+# DefinitelyTyped [![Build Status](https://travis-ci.org/DefinitelyTyped/DefinitelyTyped.svg?branch=master)](https://travis-ci.org/DefinitelyTyped/DefinitelyTyped)
 
-The repository for *high quality* TypeScript type definitions.
+[![Join the chat at https://gitter.im/borisyankov/DefinitelyTyped](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/borisyankov/DefinitelyTyped?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Usage
------
-Include a line like this:
+> The repository for *high quality* TypeScript type definitions.
 
+Also see the [definitelytyped.org](http://definitelytyped.org) website, although information in this README is more up-to-date.
+
+
+## What are declaration files?
+
+See the [TypeScript handbook](http://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html).
+
+
+## How do I get them?
+
+### npm
+
+This is the preferred method. This is only available for TypeScript 2.0+ users. For example:
+
+```sh
+npm install --save-dev @types/node
 ```
-/// <reference path="jquery.d.ts" />
+
+The types should then be automatically included by the compiler.
+See more in the [handbook](http://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html).
+
+For an NPM package "foo", typings for it will be at "@types/foo".
+If you can't find your package, look for it on [TypeSearch](https://microsoft.github.io/TypeSearch/).
+
+If you still can't find it, check if it [bundles](http://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html) its own typings.
+This is usually provided in a `"types"` or `"typings"` field in the `package.json`,
+or just look for any ".d.ts" files in the package and manually include them with a `/// <reference path="" />`.
+
+
+### Other methods
+
+These can be used by TypeScript 1.0.
+
+* [Typings](https://github.com/typings/typings)
+* ~~[NuGet](http://nuget.org/packages?q=DefinitelyTyped)~~ (use preferred alternatives, nuget DT type publishing has been turned off)
+* Manually download from the `master` branch of this repository
+
+You may need to add manual [references](http://www.typescriptlang.org/docs/handbook/triple-slash-directives.html).
+
+
+## How can I contribute?
+
+DefinitelyTyped only works because of contributions by users like you!
+
+### Test
+
+Before you share your improvement with the world, use it yourself.
+
+#### Test editing an existing package
+
+To add new features you can use [module augmentation](http://www.typescriptlang.org/docs/handbook/declaration-merging.html).
+You can also directly edit the types in `node_modules/@types/foo/index.d.ts`, or copy them from there and follow the steps below.
+
+
+#### Test a new package
+
+Add to your `tsconfig.json`:
+
+```json
+"baseUrl": "types",
+"typeRoots": ["types"],
 ```
 
-[TypeScript Directory: tools, libraries, projects and learning resources](https://github.com/DefinitelyTyped/typescript-directory)
+(You can also use `src/types`.)
+Create `types/foo/index.d.ts` containing declarations for the module "foo".
+You should now be able import from `"foo"` in your code and it will route to the new type definition.
+Then build *and* run the code to make sure your type definition actually corresponds to what happens at runtime.
+Once you've tested your definitions with real code, make a [PR](#make-a-pull-request)
+then follow the instructions to [edit an existing package](#edit-an-existing-package) or
+[create a new package](#create-a-new-package).
 
-Contributor Guidelines
-----------------------
 
-See the section: [How to contribute](https://github.com/borisyankov/DefinitelyTyped/wiki/How-to-contribute)
+### Make a pull request
 
-Other means to get the definitions
-----------------------------------
-* [NuGet packages](http://nuget.org/packages?q=DefinitelyTyped)
-* [TypeScript definition package manager](https://github.com/Diullei/tsd)
-* [tsdpm](http://www.tsdpm.com/) - Online search
+Once you've tested your package, you can share it on DefinitelyTyped.
 
-List of Definitions
--------------------
-* [Ace Cloud9 Editor](http://ace.ajax.org/) (by [Diullei Gomes](https://github.com/Diullei))
-* [Add To Home Screen] (http://cubiq.org/add-to-home-screen) (by [James Wilkins] (http://www.codeplex.com/site/users/view/jamesnw))
-* [AmCharts](http://www.amcharts.com/) (by [Covobonomo](https://github.com/covobonomo/))
-* [AngularJS](http://angularjs.org) (by [Diego Vilar](https://github.com/diegovilar)) ([wiki](https://github.com/borisyankov/DefinitelyTyped/wiki/AngularJS-Definitions-Usage-Notes))
-* [AngularUI](http://angular-ui.github.io/) (by [Michel Salib](https://github.com/michelsalib))
-* [AppFramework](http://app-framework-software.intel.com/) (by [Kyo Ago](https://github.com/kyo-ago))
-* [Arbiter](http://arbiterjs.com/) (by [Arash Shakery](https://github.com/arash16))
-* [async](https://github.com/caolan/async) (by [Boris Yankov](https://github.com/borisyankov))
-* [Backbone.js](http://backbonejs.org/) (by [Boris Yankov](https://github.com/borisyankov))
-* [Backbone Relational](http://backbonerelational.org/) (by [Eirik Hoem](https://github.com/eirikhm))
-* [Bootbox](https://github.com/makeusabrew/bootbox) (by [Vincent Bortone](https://github.com/vbortone/))
-* [Bootstrap](http://twitter.github.com/bootstrap/) (by [Boris Yankov](https://github.com/borisyankov))
-* [bootstrap-notify](https://github.com/Nijikokun/bootstrap-notify) (by [Blake Niemyjski](https://github.com/niemyjski))
-* [bootstrap.datepicker](https://github.com/eternicode/bootstrap-datepicker) (by [Boris Yankov](https://github.com/borisyankov))
-* [Box2DWeb](http://code.google.com/p/box2dweb/) (by [Josh Baldwin](https://github.com/jbaldwin/))
-* [Breeze](http://www.breezejs.com/) (by [Boris Yankov](https://github.com/borisyankov))
-* [Browser Harness](https://github.com/scriby/browser-harness) (by [Chris Scribner](https://github.com/scriby))
-* [CasperJS](http://casperjs.org) (by [Jed Hunsaker](https://github.com/jedhunsaker))
-* [Cheerio](https://github.com/MatthewMueller/cheerio) (by [Bret Little](https://github.com/blittle))
-* [Chosen](http://harvesthq.github.com/chosen/) (by [Boris Yankov](https://github.com/borisyankov))
-* [Chrome](http://developer.chrome.com/extensions/) (by [Matthew Kimber](https://github.com/matthewkimber))
-* [Chrome App](http://developer.chrome.com/apps/) (by [Adam Lay](https://github.com/AdamLay))
-* [CodeMirror](http://codemirror.net) (by [François de Campredon](https://github.com/fdecampredon))
-* [Commander](http://github.com/visionmedia/commander.js) (by [Marcelo Dezem](https://github.com/mdezem))
-* [Couchbase / Couchnode](https://github.com/couchbase/couchnode) (by [Basarat Ali Syed](https://github.com/basarat))
-* [Crossfilter](https://github.com/square/crossfilter) (by [Schmulik Raskin](https://github.com/schmuli))
-* [crypto-js](https://code.google.com/p/crypto-js/) (by [Gia Bảo @ Sân Đình](https://github.com/giabao)). @see [cryptojs.d.ts repo](https://github.com/giabao/cryptojs.d.ts)
-* [d3.js](http://d3js.org/) (from TypeScript samples)
-* [dhtmlxGantt](http://dhtmlx.com/docs/products/dhtmlxGantt) (by [Maksim Kozhukh](http://github.com/mkozhukh))
-* [dhtmlxScheduler](http://dhtmlx.com/docs/products/dhtmlxScheduler) (by [Maksim Kozhukh](http://github.com/mkozhukh))
-* [docCookies](https://developer.mozilla.org/en-US/docs/Web/API/document.cookie) (by [Jon Egerton](https://github.com/jonegerton))
-* [domo](http://domo-js.com/) (by [Steve Fenton](https://github.com/Steve-Fenton))
-* [dust](http://linkedin.github.com/dustjs) (by [Marcelo Dezem](https://github.com/mdezem))
-* [EaselJS](http://www.createjs.com/#!/EaselJS) (by [Pedro Ferreira](https://bitbucket.org/drk4))
-* [ember.js](http://emberjs.com/) (by [Boris Yankov](https://github.com/borisyankov))
-* [EpicEditor](http://epiceditor.com/) (by [Boris Yankov](https://github.com/borisyankov))
-* [expect.js](https://github.com/LearnBoost/expect.js) (by [Teppei Sato](https://github.com/teppeis))
-* [expectations](https://github.com/spmason/expectations) (by [vvakame](https://github.com/vvakame))
-* [Express](http://expressjs.com/) (by [Boris Yankov](https://github.com/borisyankov))
-* [Ext JS](http://www.sencha.com/products/extjs/) (by [Brian Kotek](https://github.com/brian428))
-* [Fabric.js](http://fabricjs.com/) (by [Oliver Klemencic](https://github.com/oklemencic/))
-* [Fancybox](http://fancybox.net/) (by [Boris Yankov](https://github.com/borisyankov))
-* [File API: Directories and System](http://www.w3.org/TR/file-system-api/) (by [Kon](http://phyzkit.net/))
-* [File API: Writer](http://www.w3.org/TR/file-writer-api/) (by [Kon](http://phyzkit.net/))
-* [Finite State Machine](https://github.com/jakesgordon/javascript-state-machine) (by [Boris Yankov](https://github.com/borisyankov))
-* [Firebase](https://www.firebase.com/docs/javascript/firebase) (by [Vincent Bortone](https://github.com/vbortone))
-* [Firefox](https://developer.mozilla.org/en-US/docs/Web/API) (by [vvakame](https://github.com/vvakame))
-* [FlexSlider](http://www.woothemes.com/flexslider/) (by [Diullei Gomes](https://github.com/Diullei))
-* [Flight by Twitter](http://flightjs.github.com/flight/) (by [Jonathan Hedrén](https://github.com/jonathanhedren))
-* [Foundation](http://foundation.zurb.com/) (by [Boris Yankov](https://github.com/borisyankov))
-* [FPSMeter](http://darsa.in/fpsmeter/) (by [Aaron Lampros](https://github.com/alampros))
-* [FullCalendar](http://arshaw.com/fullcalendar/) (by [Neil Stalker](https://github.com/nestalk))
-* [Gamepad](http://www.w3.org/TR/gamepad/) (by [Kon](http://phyzkit.net/))
-* [Giraffe](https://github.com/barc/backbone.giraffe) (by [Matt McCray](https://github.com/darthapo))
-* [glDatePicker](http://glad.github.com/glDatePicker/) (by [Dániel Tar](https://github.com/qcz))
-* [GoJS](http://gojs.net/) (by [Barbara Duckworth](https://github.com/barbara42))
-* [Greasemonkey](http://www.greasespot.net/) (by [Kota Saito](https://github.com/kotas))
-* [GreenSock Animation Platform (GSAP)](http://www.greensock.com/get-started-js/) (by [Robert S.](https://github.com/codeBelt))
-* [Grunt JS](http://gruntjs.com/) (by [Jeff May](https://github.com/jeffmay) and [Basarat Ali Syed](https://github.com/basarat))
-* [Google API Client](https://code.google.com/p/google-api-javascript-client/) (by [Frank M](https://github.com/sgtfrankieboy))
-* [Google App Engine Channel API](https://developers.google.com/appengine/docs/java/channel/javascript) (by [vvakame](https://github.com/vvakame))
-* [GoogleMaps](https://developers.google.com/maps/) (by [Esben Nepper](https://github.com/eNepper))
-* [Google Geolocation](https://code.google.com/p/geo-location-javascript/) (by [Vincent Bortone](https://github.com/vbortone))
-* [Google Page Speed Online API](https://developers.google.com/speed/pagespeed/) (by [Frank M](https://github.com/sgtfrankieboy))
-* [Google Translate API](https://developers.google.com/translate/) (by [Frank M](https://github.com/sgtfrankieboy))
-* [Google Url Shortener](https://developers.google.com/url-shortener/) (by [Frank M](https://github.com/sgtfrankieboy))
-* [Hammer.js](http://eightmedia.github.com/hammer.js/) (by [Boris Yankov](https://github.com/borisyankov))
-* [Handlebars](http://handlebarsjs.com/) (by [Boris Yankov](https://github.com/borisyankov))
-* [Highcharts](http://www.highcharts.com/) (by [damianog](https://github.com/damianog))
-* [highlight.js](https://github.com/isagalaev/highlight.js) (by [Niklas Mollenhauer](https://github.com/nikeee))
-* [History.js](https://github.com/browserstate/history.js) (by [Boris Yankov](https://github.com/borisyankov))
-* [Humane.js](http://wavded.github.com/humane-js/) (by [John Vrbanac](https://github.com/jmvrbanac))
-* [i18next](http://i18next.com/) (by [Maarten Docter](https://github.com/mdocter))
-* [iCheck](http://damirfoy.com/iCheck/) (by [Dániel Tar](https://github.com/qcz))
-* [Impress.js](https://github.com/bartaz/impress.js) (by [Boris Yankov](https://github.com/borisyankov))
-* [iScroll](http://cubiq.org/iscroll-4) (by [Boris Yankov](https://github.com/borisyankov) and [Christiaan Rakowski](https://github.com/csrakowski))
-* [IxJS (Interactive extensions)](https://github.com/Reactive-Extensions/IxJS) (by [Igor Oleinikov](https://github.com/Igorbek))
-* [jake](https://github.com/mde/jake) (by [Kon](http://phyzkit.net/))
-* [Jasmine](http://pivotal.github.com/jasmine/) (by [Boris Yankov](https://github.com/borisyankov))
-* [Jasmine-jQuery](https://github.com/velesin/jasmine-jquery) (by [Gregor Stamac](https://github.com/gstamac))
-* [JointJS](http://www.jointjs.com/) (by [Aidan Reel](http://github.com/areel))
-* [jQRangeSlider](http://ghusse.github.com/jQRangeSlider) (by [Dániel Tar](https://github.com/qcz))
-* [jQuery](http://jquery.com/) (from TypeScript samples)
-* [jQuery Mobile](http://jquerymobile.com) (by [Boris Yankov](https://github.com/borisyankov))
-* [jQuery UI](http://jqueryui.com/) (by [Boris Yankov](https://github.com/borisyankov))
-* [jQuery.Address](https://github.com/asual/jquery-address) (by [Martin Duparc](https://github.com/martinduparc/))
-* [jQuery.areYouSure](https://github.com/codedance/jquery.AreYouSure) (by [Jon Egerton](https://github.com/jonegerton))
-* [jQuery.autosize](http://www.jacklmoore.com/autosize/) (by [Jack Moore](http://www.jacklmoore.com/))
-* [jQuery.BBQ](http://benalman.com/projects/jquery-bbq-plugin/) (by [Adam R. Smith](https://github.com/sunetos))
-* [jQuery.CLEditor](http://premiumsoftware.net/CLEditor) (by [Jeffery Grajkowski](https://github.com/pushplay))
-* [jQuery.clientSideLogging](https://github.com/remybach/jQuery.clientSideLogging/) (by [Diullei Gomes](https://github.com/diullei/))
-* [jQuery.Colorbox](http://www.jacklmoore.com/colorbox/) (by [Gidon Junge](https://github.com/gjunge))
-* [jQuery.contextMenu](http://medialize.github.com/jQuery-contextMenu/) (by [Natan Vivo](https://github.com/nvivo/))
-* [jQuery.Cookie](https://github.com/carhartl/jquery-cookie) (by [Roy Goode](https://github.com/RoyGoode))
-* [jQuery.Cycle](http://jquery.malsup.com/cycle/) (by [François Guillot](http://fguillot.developpez.com/))
-* [jQuery.dataTables](http://www.datatables.net) (by [Armin Sander](https://github.com/pragmatrix))
-* [jQuery.dynatree](http://code.google.com/p/dynatree/) (by [François de Campredon](https://github.com/fdecampredon))
-* [jQuery.Flot](http://www.flotcharts.org/) (by [Matt Burland](https://github.com/burlandm))
-* [jQuery.form](http://malsup.com/jquery/form/) (by [François Guillot](http://fguillot.developpez.com/))
-* [jQuery.Globalize](https://github.com/jquery/globalize) (by [Boris Yankov](https://github.com/borisyankov))
-* [jQuery.gridster](http://gridster.net) (by [Josh Baldwin](https://github.com/jbaldwin/gridster.d.ts))
-* [jQuery.jNotify](http://jnotify.codeplex.com) (by [James Curran](https://github.com/jamescurran/))
-* [jQuery.noty](http://needim.github.io/noty/) (by [Aaron King](https://github.com/kingdango/))
-* [jQuery.pickadate](https://github.com/amsul/pickadate.js) (by [Theodore Brown](https://github.com/theodorejb))
-* [jQuery.payment](http://needim.github.io/noty/) (by [Eric J. Smith](https://github.com/ejsmith/))
-* [jQuery.scrollTo](https://github.com/flesler/jquery.scrollTo) (by [Neil Stalker](https://github.com/nestalk/))
-* [jQuery.simplePagination](https://github.com/flaviusmatis/simplePagination.js) (by [Natan Vivo](https://github.com/nvivo/))
-* [jquery.superLink](http://james.padolsey.com/demos/plugins/jQuery/superLink/superlink.jquery.js) (by [Blake Niemyjski](https://github.com/niemyjski))
-* [jQuery.timeago](http://timeago.yarp.com/) (by [François Guillot](http://fguillot.developpez.com/))
-* [jQuery.Timepicker](http://fgelinas.com/code/timepicker/) (by [Anwar Javed](https://github.com/anwarjaved))
-* [jQuery.Timer](http://jchavannes.com/jquery-timer/demo) (by [Joshua Strobl](https://github.com/JoshStrobl))
-* [jQuery.TinyCarousel](http://baijs.nl/tinycarousel/) (by [Christiaan Rakowski](https://github.com/csrakowski))
-* [jQuery.TinyScrollbar](http://baijs.nl/tinyscrollbar/) (by [Christiaan Rakowski](https://github.com/csrakowski))
-* [jQuery.Transit](http://ricostacruz.com/jquery.transit/) (by [MrBigDog2U](https://github.com/MrBigDog2U))
-* [jQuery.Validation](http://bassistance.de/jquery-plugins/jquery-plugin-validation/) (by [Boris Yankov](https://github.com/borisyankov))
-* [jQuery.Watermark](http://jquery-watermark.googlecode.com) (by [Anwar Javed](https://github.com/anwarjaved))
-* [jQuery.base64](https://github.com/yatt/jquery.base64) (by [Shinya Mochizuki](https://github.com/enrapt-mochizuki))
-* [jScrollPane](http://jscrollpane.kelvinluck.com) (by [Dániel Tar](https://github.com/qcz))
-* [JSDeferred](http://cho45.stfuawsc.com/jsdeferred/) (by [Daisuke Mino](https://github.com/minodisk))
-* [JSONEditorOnline](https://github.com/josdejong/jsoneditoronline) (by [Vincent Bortone](https://github.com/vbortone/))
-* [jStorage](http://www.jstorage.info/) (by [Danil Flores](https://github.com/dflor003/))
-* [JWPlayer](http://developer.longtailvideo.com/trac/) (by [Martin Duparc](https://github.com/martinduparc/))
-* [KeyboardJS](https://github.com/RobertWHurst/KeyboardJS) (by [Vincent Bortone](https://github.com/vbortone/))
-* [Knockback](http://kmalakoff.github.com/knockback/) (by [Marcel Binot](https://github.com/docgit))
-* [Knockout.js](http://knockoutjs.com/) (by [Boris Yankov](https://github.com/borisyankov))
-* [Knockout.DeferredUpdates](https://github.com/mbest/knockout-deferred-updates) (by [Sebastián Galiano](https://github.com/sgaliano))
-* [Knockout.ES5](https://github.com/SteveSanderson/knockout-es5) (by [Sebastián Galiano](https://github.com/sgaliano))
-* [Knockout.Mapper](https://github.com/LucasLorentz/knockout.mapper) (by [Brandon Meyer](https://github.com/BMeyerKC))
-* [Knockout.Mapping](https://github.com/SteveSanderson/knockout.mapping) (by [Boris Yankov](https://github.com/borisyankov))
-* [Knockout.Postbox](https://github.com/rniemeyer/knockout-postbox) (by [Judah Gabriel Himango](https://github.com/JudahGabriel))
-* [Knockout.Rx](https://github.com/Igorbek/knockout.rx) (by [Igor Oleinikov](https://github.com/Igorbek))
-* [Knockout.Validation](https://github.com/ericmbarnard/Knockout-Validation) (by [Dan Ludwig](https://github.com/danludwig))
-* [Knockout.Viewmodel](http://coderenaissance.github.com/knockout.viewmodel/) (by [Oisin Grehan](https://github.com/oising))
-* [ko.editables](http://romanych.github.com/ko.editables/) (by [Oisin Grehan](https://github.com/oising))
-* [KoLite](https://github.com/CodeSeven/kolite) (by [Boris Yankov](https://github.com/borisyankov))
-* [Leaflet](https://github.com/Leaflet/Leaflet) (by [Vladimir](https://github.com/rgripper))
-* [Libxmljs](https://github.com/polotek/libxmljs) (by [François de Campredon](https://github.com/fdecampredon))
-* [ladda](https://github.com/hakimel/Ladda) (by [Danil Flores](https://github.com/dflor003))
-* [Levelup](https://github.com/rvagg/node-levelup) (by [Bret Little](https://github.com/blittle))
-* [linq.js](http://linqjs.codeplex.com/) (by [Marcin Najder](https://github.com/marcinnajder))
-* [Livestamp.js](https://github.com/mattbradley/livestampjs) (by [Vincent Bortone](https://github.com/vbortone))
-* [Lodash](http://lodash.com/) (by [Brian Zengel](https://github.com/bczengel))
-* [Logg](https://github.com/dpup/node-logg) (by [Bret Little](https://github.com/blittle))
-* [Marked](https://github.com/chjj/marked) (by [William Orr](https://github.com/worr))
-* [mCustomScrollbar](https://github.com/malihu/malihu-custom-scrollbar-plugin) (by [Sarah Williams] (https://github.com/flurg))
-* [Meteor](https://www.meteor.com) (by [Dave Allen](https://github.com/fullflavedave))
-* [Modernizr](http://modernizr.com/) (by [Boris Yankov](https://github.com/borisyankov) and [Theodore Brown](https://github.com/theodorejb/))
-* [Moment.js](https://github.com/timrwood/moment) (by [Michael Lakerveld](https://github.com/Lakerfield))
-* [MongoDB](http://mongodb.github.io/node-mongodb-native/) (from TypeScript samples, updated by [Niklas Mollenhauer](https://github.com/nikeee))
-* [Mousetrap](http://craig.is/killing/mice) (by [Dániel Tar](https://github.com/qcz))
-* [msgpack.js](https://github.com/uupaa/msgpack.js) (by [Shinya Mochizuki](https://github.com/enrapt-mochizuki))
-* [Mustache.js](https://github.com/janl/mustache.js) (by [Boris Yankov](https://github.com/borisyankov))
-* [Node.js](http://nodejs.org/) (from TypeScript samples)
-* [node_redis](https://github.com/mranney/node_redis) (by [Boris Yankov](https://github.com/borisyankov))
-* [node-ffi](https://github.com/rbranson/node-ffi) (by [Paul Loyd](https://github.com/loyd))
-* [node-git](https://github.com/christkv/node-git) (by [vvakame](https://github.com/vvakame))
-* [node_zeromq](https://github.com/JustinTulloss/zeromq.node) (by [Dave McKeown](https://github.com/davemckeown))
-* [node-sqlserver](https://github.com/WindowsAzure/node-sqlserver) (by [Boris Yankov](https://github.com/borisyankov))
-* [NProgress](https://github.com/rstacruz/nprogress) (by [Judah Gabriel Himango](https://github.com/judahgabriel))
-* [Numeral.js](https://github.com/adamwdraper/Numeral-js) (by [Vincent Bortone](https://github.com/vbortone/))
-* [OpenLayers] (https://github.com/openlayers/openlayers) (by [Ilya Bolkhovsky](https://github.com/bolhovsky/))
-* [Parallel.js](https://github.com/adambom/parallel.js) (by [Josh Baldwin](https://github.com/jbaldwin))
-* [PDF.js](https://github.com/mozilla/pdf.js) (by [Josh Baldwin](https://github.com/jbaldwin))
-* [Persona](http://www.mozilla.org/en-US/persona) (by [James Frasca](https://github.com/Nycto))
-* [PhantomJS](http://phantomjs.org) (by [Jed Hunsaker](https://github.com/jedhunsaker))
-* [PhoneGap](http://phonegap.com) (by [Boris Yankov](https://github.com/borisyankov))
-* [PixiJS](https://github.com/GoodBoyDigital/pixi.js) (by [Pedro Casaubon](https://github.com/xperiments))
-* [Platform](https://github.com/bestiejs/platform.js) (by [Jake Hickman](https://github.com/JakeH))
-* [PouchDB](http://pouchdb.com) (by [Bill Sears](https://github.com/MrBigDog2U/))
-* [PreloadJS](http://www.createjs.com/#!/PreloadJS) (by [Pedro Ferreira](https://bitbucket.org/drk4))
-* [QUnit](http://qunitjs.com/) (by [Diullei Gomes](https://github.com/Diullei))
-* [Raven.js](https://github.com/getsentry/raven-js) (by [Santi Albo](https://github.com/santialbo))
-* [Rickshaw](http://code.shutterstock.com/rickshaw/) (by [Blake Niemyjski](https://github.com/niemyjski))
-* [Riot.js](https://github.com/moot/riotjs) (by [vvakame](https://github.com/vvakame))
-* [Restify](https://github.com/mcavage/node-restify) (by [Bret Little](https://github.com/blittle))
-* [Royalslider](http://dimsemenov.com/plugins/royal-slider/) (by [Christiaan Rakowski](https://github.com/csrakowski))
-* [Rx.js](http://rx.codeplex.com/) (by [gsino](http://www.codeplex.com/site/users/view/gsino))
-* [Raphael](http://raphaeljs.com/) (by [CheCoxshall](https://github.com/CheCoxshall))
-* [Restangular](https://github.com/mgonto/restangular/) (by [Boris Yankov](https://github.com/borisyankov))
-* [require.js](http://requirejs.org/) (by [Josh Baldwin](https://github.com/jbaldwin/))
-* [Sammy.js](http://sammyjs.org/) (by [Boris Yankov](https://github.com/borisyankov))
-* [Select2](http://ivaynberg.github.com/select2/) (by [Boris Yankov](https://github.com/borisyankov))
-* [Sencha Touch](http://www.sencha.com/products/touch/) (by [Brian Kotek](https://github.com/brian428))
-* [SharePoint](http://sptypescript.codeplex.com) (by [Stanislav Vyshchepan](http://gandjustas.blogspot.ru) and [Andrey Markeev](http://markeev.com))
-* [SignalR](http://www.asp.net/signalr) (by [Boris Yankov](https://github.com/borisyankov))
-* [simple-cw-node](https://github.com/astronaughts/simple-cw-node) (by [vvakame](https://github.com/vvakame))
-* [Sinon](http://sinonjs.org/) (by [William Sears](https://github.com/mrbigdog2u))
-* [SlickGrid](https://github.com/mleibman/SlickGrid) (by [Josh Baldwin](https://github.com/jbaldwin))
-* [socket.io](http://socket.io) (by [William Orr](https://github.com/worr))
-* [SockJS](https://github.com/sockjs/sockjs-client) (by [Emil Ivanov](https://github.com/vladev))
-* [SoundJS](http://www.createjs.com/#!/SoundJS) (by [Pedro Ferreira](https://bitbucket.org/drk4))
-* [Spin](http://fgnass.github.com/spin.js/) (by [Boris Yankov](https://github.com/borisyankov))
-* [stripe](https://stripe.com/) (by [Eric J. Smith](https://github.com/ejsmith/))
-* [Store.js](https://github.com/marcuswestin/store.js/) (by [Vincent Bortone](https://github.com/vbortone))
-* [Sugar](http://sugarjs.com/) (by [Josh Baldwin](https://github.com/jbaldwin/))
-* [Swiper](http://www.idangero.us/sliders/swiper) (by [Sebastián Galiano](https://github.com/sgaliano))
-* [SwipeView](http://cubiq.org/swipeview) (by [Boris Yankov](https://github.com/borisyankov))
-* [Tags Manager](http://welldonethings.com/tags/manager) (by [Vincent Bortone](https://github.com/vbortone))
-* [Teechart](http://www.steema.com) (by [Steema](http://www.steema.com))
-* [three.js](http://mrdoob.github.com/three.js/) (by [Kon](http://phyzkit.net/))
-* [Toastr](https://github.com/CodeSeven/toastr) (by [Boris Yankov](https://github.com/borisyankov))
-* [trunk8](https://github.com/rviscomi/trunk8) (by [Blake Niemyjski](https://github.com/niemyjski))
-* [TweenJS](http://www.createjs.com/#!/TweenJS) (by [Pedro Ferreira](https://bitbucket.org/drk4))
-* [tween.js](https://github.com/sole/tween.js/) (by [Adam R. Smith](https://github.com/sunetos))
-* [twitter-bootstrap-wizard](https://github.com/VinceG/twitter-bootstrap-wizard) (by [Blake Niemyjski](https://github.com/niemyjski))
-* [Ubuntu Unity Web API](https://launchpad.net/libunity-webapps) (by [John Vrbanac](https://github.com/jmvrbanac))
-* [Underscore.js](http://underscorejs.org/) (by [Boris Yankov](https://github.com/borisyankov))
-* [Underscore.js (Typed)](http://underscorejs.org/) (by [Josh Baldwin](https://github.com/jbaldwin/))
-* [Underscore-ko.js](https://github.com/kamranayub/UnderscoreKO) (by [Maurits Elbers](https://github.com/MagicMau))
-* [UUID.js](https://github.com/LiosK/UUID.js) (by [Jason Jarrett](https://github.com/staxmanade))
-* [Valerie](https://github.com/davewatts/valerie) (by [Howard Richards](https://github.com/conficient))
-* [Viewporter](https://github.com/zynga/viewporter) (by [Boris Yankov](https://github.com/borisyankov))
-* [Vimeo](http://developer.vimeo.com/player/js-api) (by [Daz Wilkin](https://github.com/DazWilkin/))
-* [WebRTC](http://dev.w3.org/2011/webrtc/editor/webrtc.html) (by [Ken Smith](https://github.com/smithkl42))
-* [websocket](https://github.com/Worlize/WebSocket-Node) (by [Paul Loyd](https://github.com/loyd))
-* [WinJS](http://msdn.microsoft.com/en-us/library/windows/apps/br229773.aspx) (from TypeScript samples)
-* [WinRT](http://msdn.microsoft.com/en-us/library/windows/apps/br211377.aspx) (from TypeScript samples)
-* [YouTube](https://developers.google.com/youtube/) (by [Daz Wilkin](https://github.com/DazWilkin/))
-* [YouTube Analytics API](https://developers.google.com/youtube/analytics/) (by [Frank M](https://github.com/sgtfrankieboy))
-* [YouTube Data API](https://developers.google.com/youtube/v3/) (by [Frank M](https://github.com/sgtfrankieboy/))
-* [Zepto.js](http://zeptojs.com/) (by [Josh Baldwin](https://github.com/jbaldwin))
-* [Zynga Scroller](https://github.com/zynga/scroller) (by [Boris Yankov](https://github.com/borisyankov))
-* [ZeroClipboard](https://github.com/jonrohan/ZeroClipboard) (by [Eric J. Smith](https://github.com/ejsmith))
+First, [fork](https://guides.github.com/activities/forking/) this repository, install [node](https://nodejs.org/), and run `npm install`.
 
-Requested Definitions
----------------------
-Here is an updated list of [definitions people have requested](https://github.com/borisyankov/DefinitelyTyped/issues?labels=Definition%3ARequest)
+
+#### Edit an existing package
+
+* `cd types/my-package-to-edit`
+* Make changes. Remember to edit tests.
+* You may also want to add yourself to "Definitions by" section of the package header.
+  - This will cause you to be notified (via your GitHub username) whenever someone makes a pull request or issue about the package.
+  - Do this by adding your name to the end of the line, as in `// Definitions by: Alice <https://github.com/alice>, Bob <https://github.com/bob>`.
+  - Or if there are more people, it can be multiline
+  ```typescript
+  // Definitions by: Alice <https://github.com/alice>
+  //                 Bob <https://github.com/bob>
+  //                 Steve <https://github.com/steve>
+  //                 John <https://github.com/john>
+  ```
+* If there is a `tslint.json`, run `npm run lint package-name`. Otherwise, run `tsc` in the package directory.
+
+When you make a PR to edit an existing package, `dt-bot` should @-mention previous authors.
+If it doesn't, you can do so yourself in the comment associated with the PR.
+
+
+#### Create a new package
+
+If you are the library author, or can make a pull request to the library, [bundle types](http://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html) instead of publishing to DefinitelyTyped.
+
+If you are adding typings for an NPM package, create a directory with the same name.
+If the package you are adding typings for is not on NPM, make sure the name you choose for it does not conflict with the name of a package on NPM.
+(You can use `npm info foo` to check for the existence of the `foo` package.)
+
+Your package should have this structure:
+
+| File | Purpose |
+| --- | --- |
+| index.d.ts | This contains the typings for the package. |
+| foo-tests.ts | This contains sample code which tests the typings. This code does *not* run, but it is type-checked. |
+| tsconfig.json | This allows you to run `tsc` within the package. |
+| tslint.json | Enables linting. |
+
+Generate these by running `npm install -g dts-gen` and `dts-gen --dt --name my-package-name --template module`.
+See all options at [dts-gen](https://github.com/Microsoft/dts-gen).
+
+You may edit the `tsconfig.json` to add new files, to add `"target": "es6"` (needed for async functions), to add to `"lib"`, or to add the `"jsx"` compiler option.
+
+DefinitelyTyped members routinely monitor for new PRs, though keep in mind that the number of other PRs may slow things down.
+
+For a good example package, see [base64-js](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/base64-js).
+
+
+#### Common mistakes
+
+* First, follow advice from the [handbook](http://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html).
+* Formatting: Either use all tabs, or always use 4 spaces.
+* `function sum(nums: number[]): number`: Use `ReadonlyArray` if a function does not write to its parameters.
+* `interface Foo { new(): Foo; }`:
+    This defines a type of objects that are new-able. You probably want `declare class Foo { constructor(); }`.
+* `const Class: { new(): IClass; }`:
+    Prefer to use a class declaration `class Class { constructor(); }` instead of a new-able constant.
+* `getMeAT<T>(): T`:
+    If a type parameter does not appear in the types of any parameters, you don't really have a generic function, you just have a disguised type assertion.
+    Prefer to use a real type assertion, e.g. `getMeAT() as number`.
+    Example where a type parameter is acceptable: `function id<T>(value: T): T;`.
+    Example where it is not acceptable: `function parseJson<T>(json: string): T;`.
+    Exception: `new Map<string, number>()` is OK.
+* Using the types `Function` and `Object` is almost never a good idea. In 99% of cases it's possible to specify a more specific type. Examples are `(x: number) => number` for [functions](http://www.typescriptlang.org/docs/handbook/functions.html#function-types) and `{ x: number, y: number }` for objects. If there is no certainty at all about the type, [`any`](http://www.typescriptlang.org/docs/handbook/basic-types.html#any) is the right choice, not `Object`. If the only known fact about the type is that it's some object, use the type [`object`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-2.html#object-type), not `Object` or `{ [key: string]: any }`.
+* `var foo: string | any`:
+    When `any` is used in a union type, the resulting type is still `any`. So while the `string` portion of this type annotation may _look_ useful, it in fact offers no additional typechecking over simply using `any`.
+    Depending on the intention, acceptable alternatives could be `any`, `string`, or `string | object`.
+
+
+#### Removing a package
+
+When a package [bundles](http://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html) its own types, types should be removed from DefinitelyTyped to avoid confusion.
+
+You can remove it by running `npm run not-needed -- typingsPackageName asOfVersion sourceRepoURL [libraryName]`.
+- `typingsPackageName`: This is the name of the directory to delete.
+- `asOfVersion`: A stub will be published to `@types/foo` with this version. Should be higher than any currently published version.
+- `sourceRepoURL`: This should point to the repository that contains the typings.
+- `libraryName`: Descriptive name of the library, e.g. "Angular 2" instead of "angular2". (If ommitted, will be identical to "typingsPackageName".)
+
+Any other packages in DefinitelyTyped that referenced the deleted package should be updated to reference the bundled types. To do this, add a `package.json` with `"dependencies": { "foo": "x.y.z" }`.
+
+If a package was never on DefinitelyTyped, it does not need to be added to `notNeededPackages.json`.
+
+
+#### Lint
+
+To lint a package, just add a `tslint.json` to that package containing `{ "extends": "dtslint/dt.json" }`. All new packages must be linted.
+If a `tslint.json` turns rules off, this is because that hasn't been fixed yet. For example:
+
+```js
+{
+    "extends": "dtslint/dt.json",
+    "rules": {
+        // This package uses the Function type, and it will take effort to fix.
+        "ban-types": false
+    }
+}
+```
+
+(To indicate that a lint rule truly does not apply, use `// tslint:disable rule-name` or better, `//tslint:disable-next-line rule-name`.)
+
+To assert that an expression is of a given type, use `$ExpectType`. To assert that an expression causes a compile error, use `$ExpectError`.
+
+```js
+// $ExpectType void
+f(1);
+
+// $ExpectError
+f("one");
+```
+
+For more details, see [dtslint](https://github.com/Microsoft/dtslint#write-tests) readme.
+
+Test by running `npm run lint package-name` where `package-name` is the name of your package.
+This script uses [dtslint](https://github.com/Microsoft/dtslint).
+
+
+## FAQ
+
+#### What exactly is the relationship between this repository and the `@types` packages on NPM?
+
+The `master` branch is automatically published to the `@types` scope on NPM thanks to [types-publisher](https://github.com/Microsoft/types-publisher).
+
+#### I've submitted a pull request. How long until it is merged?
+
+It depends, but most pull requests will be merged within a week. PRs that have been approved by an author listed in the definition's header are usually merged more quickly; PRs for new definitions will take more time as they require more review from maintainers. Each PR is reviewed by a TypeScript or DefinitelyTyped team member before being merged, so please be patient as human factors may cause delays. Check the [PR Burndown Board](https://github.com/DefinitelyTyped/DefinitelyTyped/projects/3?card_filter_query=is%3Aopen) to see progress as maintainers work through the open PRs.
+
+#### My PR is merged; when will the `@types` NPM package be updated?
+
+NPM packages should update within a few hours. If it's been more than 24 hours, ping @RyanCavanaugh and @andy-ms on the PR to investigate.
+
+#### I'm writing a definition that depends on another definition. Should I use `<reference types="" />` or an import?
+
+If the module you're referencing is an external module (uses `export`), use an import.
+If the module you're referencing is an ambient module (uses `declare module`, or just declares globals), use `<reference types="" />`.
+
+#### I notice some packages having a `package.json` here.
+
+Usually you won't need this. When publishing a package we will normally automatically create a `package.json` for it.
+A `package.json` may be included for the sake of specifying dependencies. Here's an [example](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/pikaday/package.json).
+We do not allow other fields, such as `"description"`, to be defined manually.
+Also, if you need to reference an older version of typings, you must do that by adding `"dependencies": { "@types/foo": "x.y.z" }` to the package.json.
+
+#### Some packages have no `tslint.json`, and some `tsconfig.json` are missing `"noImplicitAny": true`, `"noImplicitThis": true`, or `"strictNullChecks": true`.
+
+Then they are wrong. You can help by submitting a pull request to fix them.
+
+#### Can I request a definition?
+
+Here are the [currently requested definitions](https://github.com/DefinitelyTyped/DefinitelyTyped/labels/Definition%3ARequest).
+
+#### What about type definitions for the DOM?
+
+If types are part of a web standard, they should be contributed to [TSJS-lib-generator](https://github.com/Microsoft/TSJS-lib-generator) so that they can become part of the default `lib.dom.d.ts`.
+
+#### A package uses `export =`, but I prefer to use default imports. Can I change `export =` to `export default`?
+
+If default imports work in your environment, consider turning on the [`--allowSyntheticDefaultImports`](http://www.typescriptlang.org/docs/handbook/compiler-options.html) compiler option.
+Do not change the type definition if it is accurate.
+For an NPM package, `export =` is accurate if `node -p 'require("foo")'` is the export, and `export default` is accurate if `node -p 'require("foo").default'` is the export.
+
+#### I want to use features from TypeScript 2.1 or above.
+
+Then you will have to add a comment to the last line of your definition header (after `// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped`): `// TypeScript Version: 2.1`.
+
+#### I want to add a DOM API not present in TypeScript by default.
+
+This may belong in [TSJS-Lib-Generator](https://github.com/Microsoft/TSJS-lib-generator#readme). See the guidelines there.
+If the standard is still a draft, it belongs here.
+Use a name beginning with `dom-` and include a link to the standard as the "Project" link in the header.
+When it graduates draft mode, we may remove it from DefinitelyTyped and deprecate the associated `@types` package.
+
+#### I want to update a package to a new major version
+
+Before making your change, please create a new subfolder with the current version e.g. `v2`, and copy existing files to it. You will need to:
+
+1. Update the relative paths in `tsconfig.json` as well as `tslint.json`.
+2. Add path mapping rules to ensure that tests are running against the intended version.
+
+For example [history v2 `tsconfig.json`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/history/v2/tsconfig.json) looks like:
+
+```json
+{
+    "compilerOptions": {
+        "baseUrl": "../../",
+        "typeRoots": ["../../"],
+        "paths": {
+            "history": [ "history/v2" ]
+        },
+    },
+    "files": [
+        "index.d.ts",
+        "history-tests.ts"
+    ]
+}
+```
+
+Please note that unless upgrading something backwards-compatible like `node`, all packages depending of the updated package need a path mapping to it, as well as packages depending on *those*.
+For example, `react-router` depends on `history@2`, so [react-router `tsconfig.json`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-router/tsconfig.json) has a path mapping to `"history": [ "history/v2" ]`;
+transitively `react-router-bootstrap` (which depends on `react-router`) also adds a path mapping in its [tsconfig.json](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react-router-bootstrap/tsconfig.json).
+
+Also, `/// <reference types=".." />` will not work with path mapping, so dependencies must use `import`.
+
+#### How do I write definitions for packages that can be used globally and as a module?
+
+The TypeScript handbook contains excellent [general information about writing definitions](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html), and also [this example definition file](https://www.typescriptlang.org/docs/handbook/declaration-files/templates/global-modifying-module-d-ts.html) which shows how to create a definition using ES6-style module syntax, while also specifying objects made available to the global scope.  This technique is demonstrated practically in the [definition for big.js](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/big.js/index.d.ts), which is a library that can be loaded globally via script tag on a web page, or imported via require or ES6-style imports.
+
+To test how your definition can be used both when referenced globally or as an imported module, create a `test` folder, and place two test files in there.  Name one `YourLibraryName-global.test.ts` and the other `YourLibraryName-module.test.ts`.  The *global* test file should exercise the definition according to how it would be used in a script loaded on a web page where the library is available on the global scope - in this scenario you should not specify an import statement.  The *module* test file should exercise the definition according to how it would be used when imported (including the `import` statement(s)).  If you specify a `files` property in your `tsconfig.json` file, be sure to include both test files.  A [practical example of this](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/big.js/test) is also available on the big.js definition.
+
+Please note that it is not required to fully exercise the definition in each test file - it is sufficient to test only the globally-accessible elements on the global test file and fully exercise the definition in the module test file, or vice versa.
+
+#### What about scoped packages?
+
+Types for a scoped package `@foo/bar` should go in `types/foo__bar`. Note the double underscore.
+
+When `dts-gen` is used to scaffold a scoped package, the `paths` property has to be manually adapted in the generated
+`tsconfig.json` to correctly reference the scoped package:
+
+```json
+{
+    "paths":{
+      "@foo/bar": ["foo__bar"]
+    }
+}
+```
+
+
+#### The file history in GitHub looks incomplete.
+
+GitHub doesn't [support](http://stackoverflow.com/questions/5646174/how-to-make-github-follow-directory-history-after-renames) file history for renamed files. Use [`git log --follow`](https://www.git-scm.com/docs/git-log) instead.
+
+
+## License
+
+This project is licensed under the MIT license.
+
+Copyrights on the definition files are respective of each contributor listed at the beginning of each definition file.
+
+[![Analytics](https://ga-beacon.appspot.com/UA-47495295-4/borisyankov/DefinitelyTyped)](https://github.com/igrigorik/ga-beacon)

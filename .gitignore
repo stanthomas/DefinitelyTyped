@@ -9,7 +9,6 @@
 *.cs
 *.sln
 *.csproj
-*.txt
 *.map
 *.swp
 .DS_Store
@@ -23,31 +22,30 @@ Properties
 *~
 
 # test folder
-!_infrastructure/*.js
-!_infrastructure/tests/*
-!_infrastructure/tests/*.js
-!_infrastructure/tests/*/*.js
-!_infrastructure/tests/*/*/*.js
-!_infrastructure/tests/*/*/*/*.js
+_infrastructure/tests/build
 
-.idea/.name
+# IntelliJ based IDEs
+.idea
+*.iml
 
-.idea/DefinitelyTyped.iml
+*.js.map
+!*.js/
+!scripts/new-package.js
+!scripts/not-needed.js
+!scripts/lint.js
 
-.idea/encodings.xml
+# npm
+node_modules
+package-lock.json
+npm-debug.log
 
-.idea/libraries/Generated_files.xml
+# Sublime
+.sublimets
 
-.idea/misc.xml
+# Visual Studio Code
+.settings/launch.json
+.vs
+.vscode
 
-.idea/modules.xml
-
-.idea/scopes/scope_settings.xml
-
-.idea/vcs.xml
-
-.idea/workspace.xml
-
-.idea/watcherTasks.xml
-
-.idea/watcherTasks.xml
+# yarn
+yarn.lock
